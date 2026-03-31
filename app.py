@@ -2,7 +2,6 @@ from flask import Flask, render_template, request, redirect
 
 app = Flask(__name__)
 
-# Temporary in-memory data (instead of MySQL)
 students = []
 
 @app.route('/')
