@@ -1,23 +1,13 @@
 from flask import Flask, render_template, request, redirect
-import mysql.connector
 
 app = Flask(__name__)
 
-# Connect to MySQL
-db = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="SUSINDHAR15082006",
-    database="student_db"
-)
-
-cursor = db.cursor()
+# Temporary in-memory data (instead of MySQL)
+students = []
 
 @app.route('/')
 def index():
-    cursor.execute("SELECT * FROM students")
-    data = cursor.fetchall()
-    return render_template("index.html", students=data)
+    return render_template("index.html", students=students)
 
 @app.route('/add', methods=['POST'])
 def add():
@@ -25,11 +15,7 @@ def add():
     email = request.form['email']
     course = request.form['course']
 
-    cursor.execute(
-        "INSERT INTO students (name, email, course) VALUES (%s, %s, %s)",
-        (name, email, course)
-    )
-    db.commit()
+    students.append((name, email, course))
 
     return redirect('/')
 
