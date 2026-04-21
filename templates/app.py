@@ -10,14 +10,16 @@ def index():
 
 @app.route('/add', methods=['POST'])
 def add():
-    id = request.form['ID']
-    name = request.form['NAME']
-    Email = request.form['EMAIL']
-    Course = request.form['COURSE']
+    # ✅ Get data from form
+    id = request.form['id']
+    name = request.form['name']
+    email = request.form['email']
+    course = request.form['course']
 
-    students.append((name, email, course))
+    # ✅ Store in correct order (IMPORTANT)
+    students.append((id, name, email, course))
 
     return redirect('/')
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=10000)
+    app.run(host="0.0.0.0", port=10000, debug=True)
