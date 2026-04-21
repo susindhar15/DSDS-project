@@ -10,9 +10,10 @@ def index():
 
 @app.route('/add', methods=['POST'])
 def add():
-    name = request.form['name']
-    email = request.form['email']
-    course = request.form['course']
+    id = request.form['ID']
+    name = request.form['NAME']
+    Email = request.form['EMAIL']
+    Course = request.form['COURSE']
 
     students.append((name, email, course))
 
