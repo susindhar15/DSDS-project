@@ -10,12 +10,12 @@ def index():
 
 @app.route('/add', methods=['POST'])
 def add():
-id = request.form['id']
-name = request.form['name']
-email = request.form['email']
-course = request.form['course']
+    id = request.form['id']
+    name = request.form['name']
+    email = request.form['email']
+    course = request.form['course']
 
-    students.append((id,name, email, course))
+    students.append((id, name, email, course))  # ✅ CORRECT
 
     return redirect('/')
 
